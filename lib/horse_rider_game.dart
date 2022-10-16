@@ -1,3 +1,4 @@
+import 'package:flame/components.dart';
 import 'package:flame/game.dart';
 import 'package:flame/input.dart';
 import 'package:flame_tiled/flame_tiled.dart';
@@ -9,8 +10,6 @@ import 'package:horse_rider/character/leash.dart';
 import 'package:horse_rider/character/rider.dart';
 
 class HorseRiderGame extends FlameGame with KeyboardEvents {
-  // late final background1 = Background1();
-  // late final background2 = Background2();
   late final glacialMountains = GlacialMountains();
   late final horse = Horse();
   late final rider = Rider();
@@ -31,14 +30,12 @@ class HorseRiderGame extends FlameGame with KeyboardEvents {
   Future<void>? onLoad() async {
     await super.onLoad();
 
-    var tileSize = size.y / 20;
+    var tileSize = size[1] / 20;
 
     map1 = await TiledComponent.load('map1.tmx', Vector2.all(tileSize));
     mapWidth = map1.tileMap.map.width * tileSize;
     mapHeight = map1.tileMap.map.height * tileSize;
 
-    // add(background1);
-    // add(background2);
     add(glacialMountains);
     add(map1);
 
@@ -48,6 +45,7 @@ class HorseRiderGame extends FlameGame with KeyboardEvents {
 
     camera.followComponent(
       horse,
+      relativeOffset: Anchor.center,
       worldBounds: Rect.fromLTRB(
         0.0,
         0.0,
@@ -129,19 +127,19 @@ class HorseRiderGame extends FlameGame with KeyboardEvents {
     if (hasVelocity) {
       if (direction == LogicalKeyboardKey.arrowRight) {
         glacialMountains.velocity = 4.0;
-        // background1.velocity = 2.0;
-        // background2.velocity = 6.0;
       }
 
       if (direction == LogicalKeyboardKey.arrowLeft) {
         glacialMountains.velocity = -4.0;
-        // background1.velocity = -2.0;
-        // background2.velocity = -6.0;
       }
     } else {
       glacialMountains.velocity = 0.0;
-      // background1.velocity = 0.0;
-      // background2.velocity = 0.0;
+    }
+
+    if (rider.x < 0 || rider.x > mapWidth) {
+      onAction(null);
+
+      return;
     }
   }
 

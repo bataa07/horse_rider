@@ -72,6 +72,8 @@ class Leash extends SpriteAnimationGroupComponent<RiderState>
   void running(LogicalKeyboardKey? arrow) {
     if (arrow == null) {
       current = RiderState.standing;
+    } else {
+      current = RiderState.running;
     }
 
     direction = arrow;

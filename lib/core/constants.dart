@@ -14,7 +14,7 @@ class CharacterConstants {
   static const riderMountRunReverse = 'rider/rider_mount_run_reverse.png';
   static const riderMountIdleReverse = 'rider/rider_mount_idle_reverse.png';
 
-  // Rider assets
+  // Leash assets
   static const horseLeashRun = 'leash/leash_run.png';
   static const horseLeashIdle = 'leash/leash_idle.png';
   static const horseLeashRunReverse = 'leash/leash_run_reverse.png';

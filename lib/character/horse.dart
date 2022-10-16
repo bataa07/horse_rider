@@ -72,10 +72,11 @@ class Horse extends SpriteAnimationGroupComponent<RiderState>
   void running(LogicalKeyboardKey? arrow) {
     if (arrow == null) {
       current = RiderState.standing;
+    } else {
+      current = RiderState.running;
     }
 
     direction = arrow;
-    current = RiderState.running;
   }
 
   Future<void> reverse(LogicalKeyboardKey? arrow) async {
