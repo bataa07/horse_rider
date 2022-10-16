@@ -1,1 +1,0 @@
-enum RiderState { running, standing }
